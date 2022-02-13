@@ -1,34 +1,15 @@
-@use "vars";
-
-@mixin mainlayout {
-  display: grid;
-  height: 100vh;
-}
-
+@use "vars.scss";
 * {
   box-sizing: border-box;
 }
+
 body {
-  margin: 0px;
-}
-.mainlayout {
-  @include mainlayout;
-}
-
-.col1 {
-  background-image: vars.$primary-bg-color;
-  display: none;
-}
-.col2 {
-  background-image: vars.$secondary-bg-color;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-image: vars.$primary-gradient;
 }
 
-@media only screen and (min-width: 768px) {
-  .mainlayout {
-    @include mainlayout;
-    grid-template-columns: 1fr 4fr;
-  }
-  .col1 {
-    display: block;
-  }
+.main-layout {
+  min-height: 100%;
 }

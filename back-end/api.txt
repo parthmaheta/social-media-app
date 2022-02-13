@@ -1,0 +1,14 @@
+
+post   /login            --create session 
+delete /login            --destroy session
+
+post    /user             --create user
+get     /user/:uid        --get userinfo
+put     /user/:uid        --update user       
+delete  /user/:uid        -- delete user  
+
+get     /user/:uid/post   --get latest post
+post    /user/:uid/post    --create new post
+
+
+

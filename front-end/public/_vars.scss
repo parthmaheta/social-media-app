@@ -1,2 +1,5 @@
-$primary-bg-color: linear-gradient(blue, purple);
-$secondary-bg-color: linear-gradient(purple, blue);
+$primary-color: #8360c3;
+$secondary-color: #2ebf91;
+
+$primary-gradient: linear-gradient(to Right, $primary-color, $secondary-color);
+$secondary-gradient: linear-gradient(to Bottom, #ad5389, #3c1053);

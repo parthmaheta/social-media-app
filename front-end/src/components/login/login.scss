@@ -1,0 +1,50 @@
+.login-form {
+  padding: 2rem 4rem;
+
+  .form-control {
+    margin: 2rem;
+    display: flex;
+    flex-direction: column;
+    color: white;
+
+    label {
+      font-size: 1rem;
+      font-weight: bold;
+      color: white;
+    }
+    input {
+      font-size: 1rem;
+      padding: 0.5rem;
+      margin-top: 4px;
+      border: none;
+      border-bottom: 1px solid white;
+      background-color: transparent;
+      color: white;
+      outline: none;
+    }
+  }
+  .login-btn {
+    color: white;
+    background-color: transparent;
+    font-size: 2rem;
+    height: 4rem;
+    width: 10rem;
+    border-radius: 10px;
+  }
+
+  .login-btn:hover {
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  .disabled {
+    @extend .login-btn;
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .login-form {
+    padding: 0.5rem;
+  }
+}
