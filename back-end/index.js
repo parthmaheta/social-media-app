@@ -6,7 +6,7 @@ require("dotenv").config()
 
 const PORT = process.env.PORT || 4011
 
-app.use(cors())
+app.use(cors({ exposedHeaders: "Authorization" }))
 app.use(express.static("static"))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))

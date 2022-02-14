@@ -4,23 +4,14 @@ import { store } from "./redux/store"
 import { Provider } from "react-redux"
 import "../public/index.scss"
 import Home from "./components/Home"
+import CustomRouter from "./components/WithRouter"
+const Router = CustomRouter(Home)
 
 const App = () => {
   return (
     <React.StrictMode>
       <Provider store={store}>
-        <div className="main-layout">
-          <h1
-            style={{
-              textAlign: "center",
-              fontSize: "2.5rem",
-              color: "#fff",
-            }}
-          >
-            Welcome User
-          </h1>
-          <Home />
-        </div>
+        <Router />
       </Provider>
     </React.StrictMode>
   )

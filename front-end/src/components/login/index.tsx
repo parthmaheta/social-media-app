@@ -47,7 +47,8 @@ class Login extends Component<IProps, IState> {
           email: this.state.email,
           password: this.state.password,
         })
-        console.log("success", response.data)
+
+        localStorage.setItem("token", response.headers["authorization"])
       } catch (error) {
         if (axios.isAxiosError(error)) {
           if (error.response?.status == 401) {
