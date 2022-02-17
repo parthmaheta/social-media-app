@@ -9,11 +9,12 @@ router.route("/").post(async (req, res, next) => {
     const user = await UserModel.findOne({ email: req.body.email })
     if (user) {
       if (await bcrypt.compare(req.body.password, user.password)) {
-        const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET, {
+        const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
           expiresIn: 15 * 60,
         })
         res.header("Authorization", token)
-        return res.status(200).end()
+        const { name, dob, profilePic, gender } = user
+        return res.status(200).send({ name, dob, profilePic, gender })
       }
       return res.status(401).send({ password: "Invalid Password" })
     } else {

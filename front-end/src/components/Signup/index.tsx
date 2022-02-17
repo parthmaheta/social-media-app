@@ -78,8 +78,8 @@ class SignUp extends React.Component<IProps, IState> {
           dob: this.state.dob + "Z",
           gender: this.state.gender,
         })
-          
 
+        alert("WelCome")
       } catch (error) {
         if (axios.isAxiosError(error)) {
           //validation error

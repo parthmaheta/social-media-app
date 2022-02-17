@@ -1,27 +1,30 @@
 import { applyMiddleware, combineReducers, createStore, AnyAction } from "redux"
 import thunk from "redux-thunk"
-import { LOGIN_SUCCESS } from "./actions"
+import { LOGIN_SUCCESS, LOGOUT } from "./actions"
+import { IAppState, IUser } from "./ReducerTypes"
 
-interface IUser {
-  name: string
+const initialState: IUser = {
+  token: localStorage.getItem("token"),
+  name: "",
+  profilePic: "",
+  dob: "",
+  gender: null,
 }
 
-function UserReducer(
-  state: IUser = { name: "Unknown" },
-  action: AnyAction
-): IUser {
+function userReducer(state: IUser = initialState, action: AnyAction) {
   switch (action.type) {
     case LOGIN_SUCCESS:
-      return {
-        name: action.payload.name,
-      }
-
+      localStorage.setItem("token", action.payload.token)
+      return { ...state, ...action.payload }
+    case LOGOUT:
+      localStorage.clear()
+      return { token: null, name: "", profilePic: "", dob: "", gender: null }
     default:
       return state
   }
 }
 
 export const store = createStore(
-  combineReducers({ User: UserReducer }),
+  combineReducers<IAppState>({ user: userReducer }),
   applyMiddleware(thunk)
 )

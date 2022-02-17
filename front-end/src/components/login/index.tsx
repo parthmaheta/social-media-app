@@ -2,8 +2,15 @@ import axios, { AxiosResponse } from "axios"
 import React, { ChangeEvent, Component } from "react"
 import { DOMAIN } from "../../Constants"
 import "./login.scss"
+import { Dispatch } from "redux"
+import { connect } from "react-redux"
+import { Navigate } from "react-router-dom"
+import { IAppState } from "../../redux/ReducerTypes"
 
-interface IProps {}
+interface IProps {
+  dispatch: Dispatch
+  token: null | string
+}
 interface IState {
   password: string
   email: string
@@ -48,13 +55,19 @@ class Login extends Component<IProps, IState> {
           password: this.state.password,
         })
 
-        localStorage.setItem("token", response.headers["authorization"])
+        this.props.dispatch({
+          type: "LOGIN_SUCCESS",
+          payload: {
+            ...response.data,
+            token: response.headers["authorization"],
+          },
+        })
       } catch (error) {
         if (axios.isAxiosError(error)) {
           if (error.response?.status == 401) {
             console.log("401", error.response.data)
           } else {
-            console.log("server error")
+            alert("server error")
           }
         } else {
           alert("something went wrong")
@@ -85,6 +98,7 @@ class Login extends Component<IProps, IState> {
   }
 
   render() {
+    if (this.props.token) return <Navigate to="/feed" />
     return (
       <div className="login-form">
         <div className="form-control">
@@ -146,4 +160,10 @@ class Login extends Component<IProps, IState> {
   }
 }
 
-export default Login
+const mapStateToProps = (state: IAppState) => {
+  return {
+    token: state.user.token,
+  }
+}
+
+export default connect(mapStateToProps)(Login)
