@@ -134,9 +134,10 @@ class Login extends Component<IProps, IState> {
               onClick={this.togglePassword}
               style={{
                 position: "absolute",
-                right: "0",
-                top: "0",
-                width: "30px",
+                right: "0px",
+                top: "4px",
+                width: "40px",
+                height: "35px",
               }}
             />
           </div>

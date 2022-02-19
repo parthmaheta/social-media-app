@@ -10,7 +10,6 @@ const SignUpAndLoginContainer: React.FC<{ isLogin: boolean }> = (props) => {
         style={{
           textAlign: "center",
           fontSize: "2.5rem",
-          color: "#fff",
         }}
       >
         Welcome User

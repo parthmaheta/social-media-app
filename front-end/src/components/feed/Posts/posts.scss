@@ -1,0 +1,66 @@
+@mixin phone {
+  @media screen and (max-width: 560px) {
+    @content;
+  }
+}
+
+.posts {
+  margin-top: 5rem;
+}
+
+.post {
+  width: 60%;
+  height: 70vh;
+  margin: auto auto;
+  background-color: gray;
+  @include phone {
+    width: 100%;
+  }
+
+  &-data {
+    background-color: darken($color: #ffffff, $amount: 20%);
+    height: 5%;
+  }
+
+  &-media {
+    height: 75%;
+
+    video {
+      height: 100%;
+      width: 100%;
+    }
+    audio {
+      height: 100%;
+      width: 100%;
+    }
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+    }
+  }
+  &-text {
+    height: 10%;
+    background-color: darken($color: #ffffff, $amount: 25%);
+  }
+  &-buttons {
+    display: flex;
+    width: 100%;
+    height: 10%;
+    background-color: #fff;
+  }
+  &-button {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    img {
+      height: 2rem;
+      width: 2rem;
+    }
+  }
+  &-button:hover {
+    background-color: darken($color: #fff, $amount: 20%);
+  }
+}
