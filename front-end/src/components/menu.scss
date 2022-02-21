@@ -35,16 +35,20 @@
       top: 100%;
       z-index: 1;
       border-radius: 10px;
-      background-color: #fff;
+      background-color: #000000;
+      span,
+      a,
       span {
         padding: 0.5rem;
         display: block;
         width: 100%;
         color: #fda085;
         text-align: center;
+        text-decoration: none;
       }
-      span:hover {
-        background-color: #000000;
+      span:hover,
+      a:hover {
+        color: #ffffff;
       }
     }
 
