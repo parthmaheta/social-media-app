@@ -198,7 +198,12 @@ class SignUp extends React.Component<IProps, IState> {
             <img
               id="signupavatar"
               src="./img/male_default_avatar.jpg"
-              style={{ borderRadius: "50%", height: "100px", width: "100px" }}
+              style={{
+                borderRadius: "50%",
+                border: "1px solid black",
+                height: "100px",
+                width: "100px",
+              }}
             />
           </div>
           <div className="form-control">
