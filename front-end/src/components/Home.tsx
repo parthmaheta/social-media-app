@@ -1,7 +1,6 @@
 import React, { ReactNode, useState } from "react"
 import { connect, MapStateToPropsParam } from "react-redux"
 import "./Home.scss"
-import SignUpAndLoginContainer from "./SignUpAndLoginContainer"
 import { IAppState } from "../redux/ReducerTypes"
 
 import { Navigate } from "react-router-dom"

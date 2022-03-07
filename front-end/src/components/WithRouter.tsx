@@ -1,4 +1,4 @@
-import { HashRouter, Route, Routes } from "react-router-dom"
+import { HashRouter, Route, Routes, Navigate } from "react-router-dom"
 import React from "react"
 import Feed from "./feed"
 import SignUpAndLoginContainer from "./SignUpAndLoginContainer"
@@ -10,8 +10,6 @@ function WithRouter() {
     <HashRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/feed" element={<Feed />} />
-        <Route path="/account" element={<Account />} />
         <Route
           path="/login"
           element={<SignUpAndLoginContainer isLogin={true} />}
@@ -20,6 +18,8 @@ function WithRouter() {
           path="/signup"
           element={<SignUpAndLoginContainer isLogin={false} />}
         />
+        <Route path="/feed" element={<Feed />} />
+        <Route path="/account" element={<Account />} />
       </Routes>
     </HashRouter>
   )

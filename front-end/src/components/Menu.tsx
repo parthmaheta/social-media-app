@@ -1,10 +1,15 @@
 import React from "react"
-import { useDispatch } from "react-redux"
-import { Link, NavLink } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { Link, Navigate, NavLink } from "react-router-dom"
 import "./menu.scss"
+import { IAppState } from "../redux/ReducerTypes"
 
 const Menu: React.FC = () => {
   const dispatch = useDispatch()
+  const token = useSelector((state: IAppState) => state.user.token)
+
+  if (!token) return <Navigate to="/" />
+
   return (
     <>
       <div className="nav">

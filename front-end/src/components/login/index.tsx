@@ -55,7 +55,7 @@ class Login extends Component<IProps, IState> {
           password: this.state.password,
         })
 
-        this.props.dispatch({
+        return this.props.dispatch({
           type: "LOGIN_SUCCESS",
           payload: {
             ...response.data,
@@ -99,6 +99,7 @@ class Login extends Component<IProps, IState> {
 
   render() {
     if (this.props.token) return <Navigate to="/feed" />
+
     return (
       <div className="login-form">
         <div className="form-control">

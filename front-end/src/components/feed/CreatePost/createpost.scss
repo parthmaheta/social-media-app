@@ -1,0 +1,64 @@
+@mixin phone {
+  @media screen and (max-width: 560px) {
+    @content;
+  }
+}
+
+.CreatePostContainer {
+  width: 60%;
+  margin: 1rem auto;
+
+  @include phone {
+    width: 100%;
+  }
+
+  .firstRow {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0.5rem;
+    .previewMedia {
+      height: 6rem;
+      width: 10rem;
+      border: 1px solid #000;
+    }
+    .postTextArea {
+      border: 1px solid #000;
+      font-size: 1.5rem;
+      resize: none;
+      margin-left: 1rem;
+      padding: 0.3rem;
+      flex: 1;
+      border-radius: 1rem;
+    }
+  }
+
+  .secondRow {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+
+    padding: 0.5rem;
+
+    .uploadLabel {
+      font-size: 1rem;
+      border: 1px solid black;
+      padding: 0.5rem;
+
+      &:hover {
+        background-color: darken($color: #fff, $amount: 20%);
+      }
+    }
+    .uploadBtn {
+      display: none;
+    }
+    .shareBtn {
+      background-color: transparent;
+      border: 1px solid #000;
+      width: 5rem;
+      &:hover {
+        background-color: darken($color: #fff, $amount: 20%);
+      }
+    }
+  }
+}
