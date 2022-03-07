@@ -50,7 +50,7 @@ function PreviewMedia(props: { file: File }) {
   let ref = React.createRef()
 
   useEffect(() => {
-    (ref.current as HTMLMediaElement)?.load()
+    ;(ref.current as HTMLMediaElement)?.load()
   }, [props.file])
 
   if (/^image\/(.)*$/.test(props.file.type)) {
@@ -69,7 +69,11 @@ function PreviewMedia(props: { file: File }) {
   } else if (/^audio\/(.)*$/.test(props.file.type)) {
     return (
       <div>
-        <audio controls className="previewMedia" ref={ref}>
+        <audio
+          controls
+          className="previewMedia"
+          ref={ref as LegacyRef<HTMLAudioElement>}
+        >
           <source src={URL.createObjectURL(props.file)} id="previewAudio" />
         </audio>
         <br />
@@ -79,7 +83,11 @@ function PreviewMedia(props: { file: File }) {
   } else if (/^video\/(.)*$/.test(props.file.type)) {
     return (
       <div>
-        <video controls className="previewMedia" ref={ref as LegacyRef< HTMLVideoElement>}>
+        <video
+          controls
+          className="previewMedia"
+          ref={ref as LegacyRef<HTMLVideoElement>}
+        >
           <source src={URL.createObjectURL(props.file)} id="previewVideo" />
         </video>
         <br />
