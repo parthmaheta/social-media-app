@@ -2,7 +2,7 @@ import { Document, Model, ObjectId } from "mongoose"
 
 interface PostSchema extends Document {
   caption: string
-  image: string
+  media: string
   comments: ObjectId[]
   likes: ObjectId[]
   shares: ObjectId[]

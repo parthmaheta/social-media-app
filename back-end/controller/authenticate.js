@@ -8,18 +8,8 @@ exports.verifyToken = function (req, res, next) {
       process.env.JWT_SECRET,
       function (err, token) {
         if (err) return res.status(401).send("Unauthorized")
-        else {
-          if (
-            jwt.decode(req.headers.authorization).exp <
-            Date.now() / 1000 + 30
-          ) {
-            res.header(
-              "authorization",
-              jwt.sign({ email: req.body.email }, process.env.JWT_SECRET)
-            )
-          }
-          next()
-        }
+
+        next()
       }
     )
   } else {
