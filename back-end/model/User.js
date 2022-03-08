@@ -19,9 +19,9 @@ const UserSchema = new mongoose.Schema({
   profilePic: {
     type: String,
     default: function () {
-      if (this.gender === "M") return "male_default_avatar.jpg"
-      else if (this.gender === "F") return "female_default_avatar.jpg"
-      else if (this.gender === "O") return "other_default_avatar.jpg"
+      if (this.gender === "M") return "img/male_default_avatar.jpg"
+      else if (this.gender === "F") return "img/female_default_avatar.jpg"
+      else if (this.gender === "O") return "img/other_default_avatar.jpg"
     },
   },
   friends: [

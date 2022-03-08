@@ -1,12 +1,14 @@
 import React from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Link, Navigate, NavLink } from "react-router-dom"
+import { Link, Navigate, NavLink, useLocation } from "react-router-dom"
 import "./menu.scss"
 import { IAppState } from "../redux/ReducerTypes"
+import { LOGOUT } from "../redux/actions"
 
 const Menu: React.FC = () => {
   const dispatch = useDispatch()
   const token = useSelector((state: IAppState) => state.user.token)
+  const location = useLocation()
 
   if (!token) return <Navigate to="/" />
 
@@ -36,10 +38,17 @@ const Menu: React.FC = () => {
             className="nav-item-icon"
             alt="user icon"
           />
-          <span className="nav-item-text">Account</span>
+          <span
+            className="nav-item-text"
+            style={{
+              color: location.pathname == "/account" ? "#000" : "inherit",
+            }}
+          >
+            Account
+          </span>
           <div className="nav-item-submenu">
             <Link to="/account">More</Link>
-            <span onClick={() => dispatch({ type: "LOGOUT" })}>Logout</span>
+            <span onClick={() => dispatch({ type: LOGOUT })}>Logout</span>
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import { applyMiddleware, combineReducers, createStore, AnyAction } from "redux"
 import thunk from "redux-thunk"
-import { LOGIN_SUCCESS, LOGOUT } from "./actions"
+import { LOGIN_SUCCESS, LOGOUT, SETUSER } from "./actions"
 import { IAppState, IUser } from "./ReducerTypes"
 
 const initialState: IUser = {
@@ -19,6 +19,8 @@ function userReducer(state: IUser = initialState, action: AnyAction) {
     case LOGOUT:
       localStorage.clear()
       return { token: null, name: "", profilePic: "", dob: "", gender: null }
+    case SETUSER:
+      return { ...action.payload }
     default:
       return state
   }

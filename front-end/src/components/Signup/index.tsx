@@ -119,13 +119,15 @@ class SignUp extends React.Component<IProps, IState> {
   }
 
   changeAvatar = (e: FormEvent<HTMLSelectElement>) => {
+    const domain = DOMAIN.slice(0, -5)
+
     let images = {
-      M: "./img/male_default_avatar.jpg",
-      F: "./img/female_default_avatar.jpg",
-      O: "./img/other_default_avatar.jpg",
+      M: "/img/male_default_avatar.jpg",
+      F: "/img/female_default_avatar.jpg",
+      O: "/img/other_default_avatar.jpg",
     }
     let avatar = document.getElementById("signupavatar") as HTMLImageElement
-    avatar.src = images[e.currentTarget.value as keyof typeof images]
+    avatar.src = domain + images[e.currentTarget.value as keyof typeof images]
     this.setState({ gender: e.currentTarget.value as gender })
   }
 
@@ -197,7 +199,7 @@ class SignUp extends React.Component<IProps, IState> {
           <div className="form-control">
             <img
               id="signupavatar"
-              src="./img/male_default_avatar.jpg"
+              src={DOMAIN.slice(0, -5) + "/img/male_default_avatar.jpg"}
               style={{
                 borderRadius: "50%",
                 border: "1px solid black",
