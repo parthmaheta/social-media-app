@@ -4,11 +4,12 @@ const { verifyToken } = require("../../controller/authenticate")
 const {
   CreateUser,
   GetUser,
-  UpdateUser,
-  DeleteUser,
+  updateProfile,
+  updateDetails,
 } = require("../../controller/User")
 
-route.route("/").get(GetUser).post(CreateUser)
+route.use("/", verifyToken)
+route.route("/").get(GetUser).post(CreateUser).put(updateProfile, updateDetails)
 route.use("/:uid", verifyToken)
 
 module.exports = route

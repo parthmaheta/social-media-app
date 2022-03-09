@@ -1,0 +1,64 @@
+@mixin phone {
+  @media screen and (max-width: 560px) {
+    @content;
+  }
+}
+.container {
+  width: 70vw;
+  margin: auto;
+  padding-top: 2rem;
+
+  @include phone {
+    width: 100vw;
+  }
+
+  .rowProfile {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-end;
+
+    img {
+      width: 10rem;
+      height: 10rem;
+      border-radius: 50%;
+    }
+    label {
+      border: 1px solid black;
+      padding: 0.5rem;
+      font-size: 1.2rem;
+      border-radius: 0.5rem;
+      background-color: transparent;
+      margin-left: 2rem;
+      &:hover {
+        background-color: #f7ecec;
+      }
+    }
+    input[type="file"] {
+      display: none;
+    }
+  }
+
+  .account-info {
+    display: flex;
+    flex-flow: row wrap;
+
+    font-size: 1.5rem;
+    padding: 0.1rem 0.5rem;
+    input,
+    select {
+      outline: none;
+      border: none;
+      border-bottom: 1px solid black;
+      flex-grow: 1;
+      margin-left: 2rem;
+      font-size: 1.2rem;
+    }
+  }
+  button {
+    font-size: 1.5rem;
+    margin-left: 50%;
+    margin-top: 2rem;
+    padding: 0.5rem 2rem;
+  }
+}

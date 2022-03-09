@@ -25,7 +25,7 @@ export default function Feed() {
   )
 }
 
-async function fetchUserFromServer(token: string | null, dispatch: Dispatch) {
+export async function fetchUserFromServer(token: string | null, dispatch: Dispatch) {
   if (!token) dispatch({ type: LOGOUT })
 
   try {
