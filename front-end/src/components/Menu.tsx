@@ -20,10 +20,23 @@ const Menu: React.FC = () => {
           <span className="nav-item-text">Posts</span>
         </NavLink>
 
-        <NavLink to="/friend" className="nav-item">
+        <div className="nav-item">
           <img src="./icons/user.png" className="nav-item-icon" alt="friend" />
-          <span className="nav-item-text">Friend</span>
-        </NavLink>
+          <span
+            className="nav-item-text"
+            style={{
+              color: location.pathname.startsWith("/friend")
+                ? "#000"
+                : "inherit",
+            }}
+          >
+            Friend
+          </span>
+          <div className="nav-item-submenu">
+            <Link to="/friends/search">Search</Link>
+            <Link to="/friends">My Friends</Link>
+          </div>
+        </div>
         <NavLink to="/message" className="nav-item">
           <img
             src="./icons/message.png"
