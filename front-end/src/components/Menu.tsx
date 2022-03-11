@@ -1,16 +1,22 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, Navigate, NavLink, useLocation } from "react-router-dom"
 import "./menu.scss"
 import { IAppState } from "../redux/ReducerTypes"
-import { LOGOUT } from "../redux/actions"
+import { LOGOUT, SETUSER } from "../redux/actions"
+import { DOMAIN } from "../Constants"
+import axios from "axios"
+import { Dispatch } from "redux"
 
 const Menu: React.FC = () => {
   const dispatch = useDispatch()
-  const token = useSelector((state: IAppState) => state.user.token)
+  const user = useSelector((state: IAppState) => state.user)
   const location = useLocation()
 
-  if (!token) return <Navigate to="/" />
+  if (!user.token) return <Navigate to="/" />
+  useEffect(() => {
+    if (!user.name) fetchUserFromServer(user.token, dispatch)
+  }, [])
 
   return (
     <>
@@ -69,5 +75,31 @@ const Menu: React.FC = () => {
       <div style={{ marginTop: "5rem" }}></div>
     </>
   )
+}
+
+export async function fetchUserFromServer(
+  token: string | null,
+  dispatch: Dispatch
+) {
+  if (!token) dispatch({ type: LOGOUT })
+
+  try {
+    const response = await axios.get(DOMAIN + "user/ ", {
+      headers: {
+        Authorization: token as string,
+      },
+    })
+
+    if (response.status === 200) {
+      return dispatch({
+        type: SETUSER,
+        payload: { token: token, ...response.data },
+      })
+    } else {
+      dispatch({ type: LOGOUT })
+    }
+  } catch (e) {
+    dispatch({ type: LOGOUT })
+  }
 }
 export default Menu

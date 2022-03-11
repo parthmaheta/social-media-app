@@ -1,0 +1,41 @@
+@mixin phone {
+  @media screen and (max-width: 560px) {
+    @content;
+  }
+}
+
+.container {
+  width: 70vw;
+  margin: auto;
+  @include phone {
+    width: 100%;
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  .profile {
+    width: 100%;
+    padding: 1rem 2rem;
+    display: grid;
+    grid-template-columns: auto auto;
+    @include phone {
+      grid-template-columns: auto;
+    }
+
+    .label {
+      font-size: 1.4rem;
+      opacity: 0.8;
+    }
+    .text {
+      font-size: 1.4rem;
+      margin-left: 1rem;
+    }
+    img {
+      border-radius: 50%;
+      width: 10rem;
+      height: 10rem;
+    }
+  }
+}

@@ -10,7 +10,6 @@ import { DOMAIN } from "../../Constants"
 import { IAppState } from "../../redux/ReducerTypes"
 import Menu from "../Menu"
 import "./account.scss"
-import { fetchUserFromServer } from "./../feed"
 import axios from "axios"
 import { SETUSER } from "../../redux/actions"
 
@@ -24,13 +23,9 @@ function index() {
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   useEffect(() => {
-    if (!user.name) {
-      fetchUserFromServer(user.token, dispatch)
-    } else {
-      setName(user.name)
-      setGender(user.gender as string)
-      setDob(user.dob.slice(0, user.dob.indexOf("T")))
-    }
+    setName(user.name)
+    setGender(user.gender as string)
+    setDob(user.dob.slice(0, user.dob.indexOf("T")))
   }, [user])
 
   const updateAccount = async () => {

@@ -11,11 +11,6 @@ import { Dispatch } from "redux"
 
 export default function Feed() {
   const user = useSelector((state: IAppState) => state.user)
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    if (!user.name) fetchUserFromServer(user.token, dispatch)
-  }, [])
 
   return (
     <>
@@ -23,29 +18,6 @@ export default function Feed() {
       {user.name ? <FeedBody /> : <h1>Please Wait...</h1>}
     </>
   )
-}
-
-export async function fetchUserFromServer(token: string | null, dispatch: Dispatch) {
-  if (!token) dispatch({ type: LOGOUT })
-
-  try {
-    const response = await axios.get(DOMAIN + "user/ ", {
-      headers: {
-        Authorization: token as string,
-      },
-    })
-
-    if (response.status === 200) {
-      return dispatch({
-        type: SETUSER,
-        payload: { token: token, ...response.data },
-      })
-    } else {
-      dispatch({ type: LOGOUT })
-    }
-  } catch (e) {
-    dispatch({ type: LOGOUT })
-  }
 }
 
 function FeedBody() {
